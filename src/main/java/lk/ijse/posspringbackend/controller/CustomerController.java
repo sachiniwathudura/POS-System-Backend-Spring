@@ -1,5 +1,6 @@
 package lk.ijse.posspringbackend.controller;
 
+import lk.ijse.posspringbackend.customObj.CustomerResponse;
 import lk.ijse.posspringbackend.dto.CustomerDTO;
 import lk.ijse.posspringbackend.entity.Customer;
 import lk.ijse.posspringbackend.exception.CustomerNotFoundException;
@@ -13,6 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -77,5 +80,13 @@ public class CustomerController {
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+    @GetMapping("/{id}")
+    public CustomerResponse getSelectedCustomer(@PathVariable("id") String id){
+        return customerService.getSelectedCustomer(id);
+    }
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<CustomerDTO> getAllCustomers(){
+        return customerService.getAllCustomers();
     }
 }

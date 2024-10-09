@@ -1,5 +1,6 @@
 package lk.ijse.posspringbackend.service;
 
+import lk.ijse.posspringbackend.customObj.CustomerErrorResponse;
 import lk.ijse.posspringbackend.customObj.CustomerResponse;
 import lk.ijse.posspringbackend.dao.CustomerDao;
 import lk.ijse.posspringbackend.dto.CustomerDTO;
@@ -73,11 +74,17 @@ public class CustomerServiceImpl implements CustomerService{
 
     @Override
     public CustomerResponse getSelectedCustomer(String id) {
-        return null;
+        if(customerDao.existsById(id)){
+            Customer customerById = customerDao.getCustomerById(id);
+            return mapping.convertToCustomerDTO(customerById);
+        }else {
+            return new CustomerErrorResponse(0,"Customer not found");
+        }
     }
 
     @Override
     public List<CustomerDTO> getAllCustomers() {
-        return null;
+        List<Customer> getAllCustomers = customerDao.findAll();
+        return mapping.convertCustomerToList(getAllCustomers);
     }
 }
