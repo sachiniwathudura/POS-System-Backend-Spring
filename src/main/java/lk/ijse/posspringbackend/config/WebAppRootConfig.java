@@ -28,7 +28,7 @@ public class WebAppRootConfig {
     @Bean
     public DataSource dataSource(){
         var dmbs = new DriverManagerDataSource();
-        dmbs.setUsername("com.mysql.cj.jdbc.Driver");
+        dmbs.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dmbs.setUrl("jdbc:mysql://localhost:3306/POSBackEndSpring?createDatabaseIfNotExist=true");
         dmbs.setUsername("root");
         dmbs.setPassword("Ijse@1234");
@@ -41,7 +41,7 @@ public class WebAppRootConfig {
         vendorAdapter.setGenerateDdl(true);
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan("lk.ijse.gdse.posspringbackend.entity");//application eke entities scan,entity tik load krgnne mekn
+        factory.setPackagesToScan("lk.ijse.posspringbackend.entity");//application eke entities scan,entity tik load krgnne mekn
         factory.setDataSource(dataSource());
         return factory;
     }
