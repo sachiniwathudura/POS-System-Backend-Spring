@@ -2,6 +2,7 @@ package lk.ijse.posspringbackend.controller;
 
 import lk.ijse.posspringbackend.dto.CustomerDTO;
 import lk.ijse.posspringbackend.entity.Customer;
+import lk.ijse.posspringbackend.exception.CustomerNotFoundException;
 import lk.ijse.posspringbackend.exception.DataPersistsFailedException;
 import lk.ijse.posspringbackend.service.CustomerService;
 import lombok.RequiredArgsConstructor;
@@ -63,4 +64,18 @@ public class CustomerController {
         }
     }
 
+    @DeleteMapping(value ="/{id}" )
+    public ResponseEntity<Void> deleteCustomer(@PathVariable ("id") String id) {
+        try {
+            if (id == null || id.isEmpty()){
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+            customerService.deleteCustomer(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (CustomerNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

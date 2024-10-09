@@ -4,6 +4,7 @@ import lk.ijse.posspringbackend.customObj.CustomerResponse;
 import lk.ijse.posspringbackend.dao.CustomerDao;
 import lk.ijse.posspringbackend.dto.CustomerDTO;
 import lk.ijse.posspringbackend.entity.Customer;
+import lk.ijse.posspringbackend.exception.CustomerNotFoundException;
 import lk.ijse.posspringbackend.exception.DataPersistsFailedException;
 import lk.ijse.posspringbackend.util.AppUtil;
 import lk.ijse.posspringbackend.util.Mapping;
@@ -61,8 +62,13 @@ public class CustomerServiceImpl implements CustomerService{
     }
 
     @Override
-    public void deleteCustomer(CustomerDTO customerDTO) {
-
+    public void deleteCustomer(String id) {
+        Optional<Customer> selectedUserId = customerDao.findById(id);
+        if(!selectedUserId.isPresent()){
+            throw new CustomerNotFoundException("Customer not found");
+        }else {
+            customerDao.deleteById(id);
+        }
     }
 
     @Override
