@@ -13,9 +13,7 @@ The POS System Backend is a RESTful API that supports the frontend operations of
 - [Installation](#installation)
 - [Usage](#usage)
 - [API Documentation](#api-documentation)
-- [Contributing](#contributing)
 - [License](#license)
-- [Contact](#contact)
 
 ## Features
 - Manage customer records
@@ -38,3 +36,33 @@ The POS System Backend is a RESTful API that supports the frontend operations of
 - Maven
 - MySQL
 - Apache Tomcat 10
+
+### API Endpoints
+
+<h3>Customer Endpoints</h3>
+<ul>
+    <li>GET /customer: Retrieve all customers.</li>
+    <li>POST /customer: Create a new customer.</li>
+    <li>PUT /customer: Update an existing customer.</li>
+    <li>DELETE /customer/{id}: Delete a customer by ID.</li>
+</ul>
+
+<h3>Item Endpoints</h3>
+<ul>
+    <li>GET /item: Retrieve all items.</li>
+    <li>POST /item: Create a new item.</li>
+    <li>PUT /item: Update an existing item.</li>
+    <li>DELETE /item/{id}: Delete a item by ID.</li>
+</ul>
+
+<h3>Order Endpoints</h3>
+<ul>
+    <li>GET /order: Retrieve all order.</li>
+    <li>POST /order: Create a new order.</li>
+</ul>
+
+### Documentation
+-postman documentation - https://documenter.getpostman.com/view/35385634/2sAXxTcqgf
+
+### MIT License 
+https://github.com/sachiniwathudura/POS-System-Backend-Spring/blob/main/LICENSE
