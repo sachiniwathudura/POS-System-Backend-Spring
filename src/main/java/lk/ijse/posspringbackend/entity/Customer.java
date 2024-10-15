@@ -1,10 +1,10 @@
 package lk.ijse.posspringbackend.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
 import lombok.*;
+
+import java.util.List;
 
 @AllArgsConstructor
 @Data
@@ -18,4 +18,6 @@ public class Customer implements SuperEntity {
     private String name;
     private String address;
     private Double salary;
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Orders> orders;
 }
